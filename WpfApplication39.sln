@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging", "Common.Lo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging.Log4Net", "Logging.Log4Net\Logging.Log4Net.csproj", "{69F16BAB-66CE-4F2D-8EB8-3DA31F0A1741}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asteros.AsterosContact.Common", "Asteros.AsterosContact.Common\Asteros.AsterosContact.Common.csproj", "{808266D5-CB09-4176-BE80-59EC5486CC38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{69F16BAB-66CE-4F2D-8EB8-3DA31F0A1741}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69F16BAB-66CE-4F2D-8EB8-3DA31F0A1741}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69F16BAB-66CE-4F2D-8EB8-3DA31F0A1741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{808266D5-CB09-4176-BE80-59EC5486CC38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{808266D5-CB09-4176-BE80-59EC5486CC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{808266D5-CB09-4176-BE80-59EC5486CC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{808266D5-CB09-4176-BE80-59EC5486CC38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

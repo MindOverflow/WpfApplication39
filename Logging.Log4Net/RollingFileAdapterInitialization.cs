@@ -69,6 +69,9 @@ namespace Logging.Log4Net
             MaxSizeRollBackups = 10;
             StaticLogFileName = true;
             ImmediateFlush = true;
+            // Данному свойству присваивается такое значение, которое
+            // задаётся для того, чтобы "выкатывать" файлы логирования 
+            // единожды, при выполнении программы.
             RollingStyle = RollingFileAppender.RollingMode.Once;
             DatePattern = ".yyyy-MM-dd";
         }
