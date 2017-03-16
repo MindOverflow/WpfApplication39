@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging", "Common.Logging\Common.Logging.csproj", "{58BD35F6-BB74-478C-89E7-6ECCE8955131}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging.Log4Net", "Logging.Log4Net\Logging.Log4Net.csproj", "{69F16BAB-66CE-4F2D-8EB8-3DA31F0A1741}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58BD35F6-BB74-478C-89E7-6ECCE8955131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58BD35F6-BB74-478C-89E7-6ECCE8955131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58BD35F6-BB74-478C-89E7-6ECCE8955131}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58BD35F6-BB74-478C-89E7-6ECCE8955131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69F16BAB-66CE-4F2D-8EB8-3DA31F0A1741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69F16BAB-66CE-4F2D-8EB8-3DA31F0A1741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69F16BAB-66CE-4F2D-8EB8-3DA31F0A1741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69F16BAB-66CE-4F2D-8EB8-3DA31F0A1741}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

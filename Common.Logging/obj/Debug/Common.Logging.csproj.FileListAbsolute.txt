@@ -1,0 +1,4 @@
+D:\WPF\Tests\WpfApplication39\Common.Logging\bin\Debug\Common.Logging.dll
+D:\WPF\Tests\WpfApplication39\Common.Logging\bin\Debug\Common.Logging.pdb
+D:\WPF\Tests\WpfApplication39\Common.Logging\obj\Debug\Common.Logging.dll
+D:\WPF\Tests\WpfApplication39\Common.Logging\obj\Debug\Common.Logging.pdb

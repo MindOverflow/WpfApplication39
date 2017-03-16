@@ -1,0 +1,5 @@
+D:\WPF\Tests\WpfApplication39\Logging.Log4Net\bin\Debug\Logging.Log4Net.dll
+D:\WPF\Tests\WpfApplication39\Logging.Log4Net\bin\Debug\Logging.Log4Net.pdb
+D:\WPF\Tests\WpfApplication39\Logging.Log4Net\obj\Debug\Logging.Log4Net.csprojResolveAssemblyReference.cache
+D:\WPF\Tests\WpfApplication39\Logging.Log4Net\obj\Debug\Logging.Log4Net.dll
+D:\WPF\Tests\WpfApplication39\Logging.Log4Net\obj\Debug\Logging.Log4Net.pdb
