@@ -44,10 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Log4NetAppenderAdapterInitializationBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RollingFileAdapterInitialization.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Common.Logging\Common.Logging.csproj">
+      <Project>{58bd35f6-bb74-478c-89e7-6ecce8955131}</Project>
+      <Name>Common.Logging</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

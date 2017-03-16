@@ -3,3 +3,7 @@ D:\WPF\Tests\WpfApplication39\Logging.Log4Net\bin\Debug\Logging.Log4Net.pdb
 D:\WPF\Tests\WpfApplication39\Logging.Log4Net\obj\Debug\Logging.Log4Net.csprojResolveAssemblyReference.cache
 D:\WPF\Tests\WpfApplication39\Logging.Log4Net\obj\Debug\Logging.Log4Net.dll
 D:\WPF\Tests\WpfApplication39\Logging.Log4Net\obj\Debug\Logging.Log4Net.pdb
+D:\WPF\Tests\WpfApplication39\Logging.Log4Net\bin\Debug\Common.Logging.dll
+D:\WPF\Tests\WpfApplication39\Logging.Log4Net\bin\Debug\log4net.dll
+D:\WPF\Tests\WpfApplication39\Logging.Log4Net\bin\Debug\Common.Logging.pdb
+D:\WPF\Tests\WpfApplication39\Logging.Log4Net\bin\Debug\log4net.xml
