@@ -241,14 +241,14 @@ namespace Asteros.AsterosContact.Common.Logging
             }
 
             // Возвращает целочисленный номер последнего вхождения символа точки, начиная с нуля, в левой части.
-            var lastDotIndex = leftPart.LastIndexOf(".");
+            var lastDotIndex = leftPart.LastIndexOf(".", StringComparison.Ordinal);
             // Данный входной параметр является внешним по отношению к текущему статическому методу.
             className = leftPart.Substring(0, lastDotIndex);
             // Данный входной параметр является внешним по отношению к текущему статическому методу.
             methodName = leftPart.Substring(lastDotIndex + 1);
 
             // Возвращает целочисленный номер последнего вхождения символа двоеточия, начиная с нуля, в правой части.
-            var lastSemicolonIndex = rightPart.LastIndexOf(":");
+            var lastSemicolonIndex = rightPart.LastIndexOf(":", StringComparison.Ordinal);
             // Данный входной параметр является внешним по отношению к текущему статическому методу.
             fileName = rightPart.Substring(0, lastSemicolonIndex);
 
