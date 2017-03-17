@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logging\AdapterType.cs" />
+    <Compile Include="Logging\ITitleForLog.cs" />
     <Compile Include="Logging\LocationInfo.cs" />
+    <Compile Include="Logging\LoggingCategory.cs" />
     <Compile Include="Logging\LogLevel.cs" />
     <Compile Include="Logging\LogMessage.cs" />
     <Compile Include="Logging\LogMessageType.cs" />

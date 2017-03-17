@@ -5,7 +5,7 @@ using System.Collections.Generic;
 // Logging - название папки в проекте Asteros.AsterosContact.Common
 namespace Asteros.AsterosContact.Common.Logging
 {
-    // Класс представляет собой сообщение (запись) журнала.
+    // Класс представляет собой сообщение (запись) журнала. Это та строка, которую мы увидим в файле журнала.
     /// <summary>
 	/// Представляет сообщение (запись) журнала.
 	/// </summary>
