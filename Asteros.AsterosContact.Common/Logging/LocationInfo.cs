@@ -20,7 +20,7 @@ namespace Asteros.AsterosContact.Common.Logging
         // Имя_Класса.Имя_Метода(Имя_Файла:Номер_Линии_Файла)
         // Реальные примеры из журнала логирования:
         private const string FullInfoStringFormat = "{0}.{1}({2}:{3})";
-        #endregion
+        #endregion defs
 
         #region props
 
@@ -90,6 +90,8 @@ namespace Asteros.AsterosContact.Common.Logging
         }
 
         /// <summary>
+        /// Возвращает или устанавливает всю доступную информацию о коллере,
+        /// то есть функции, вызывающей метод записи в журнал логирования
         /// Gets or sets all available caller information.
         /// </summary>
         /// <value>
@@ -103,14 +105,19 @@ namespace Asteros.AsterosContact.Common.Logging
             }
             private set
             {
+                // Это локальные переменные, как если бы это был метод-сеттер.
                 string className;
                 string methodName;
                 string fileName;
 
                 int lineNumber;
 
+                // Если данная проверка не проходит, то в таком случае установка свойств
+                // ClassName, MethodName, FileName, LineNumber не происходит.
                 if (ParseFullInfo(value, out className, out methodName, out fileName, out lineNumber) == false)
+                {
                     return;
+                }
 
                 ClassName = className;
                 MethodName = methodName;
@@ -118,7 +125,7 @@ namespace Asteros.AsterosContact.Common.Logging
                 LineNumber = lineNumber;
             }
         }
-        #endregion
+        #endregion props
 
         #region ctors
 
@@ -146,57 +153,111 @@ namespace Asteros.AsterosContact.Common.Logging
             LineNumber = lineNumber;
             MethodName = methodName;
         }
+        #endregion ctors
 
         /// <summary>
+        /// Разбирает указанную строку в инстанс класса <смотри cref="LocationInfo"/>
+        /// 
         /// Parses specified string into <see cref="LocationInfo"/>
         /// </summary>
         /// <param name="fullInfo"></param>
-        /// <returns></returns>
+        /// <returns>Возвращает местоопределение в коде, где происходит вызов </returns>
         public static LocationInfo FromFullInfo(string fullInfo)
         {
-            string className, methodName, fileName;
+            string className;
+            string methodName;
+            string fileName;
+
             int lineNumber;
+
             return ParseFullInfo(fullInfo, out className, out methodName, out fileName, out lineNumber)
                     ? new LocationInfo(className, methodName, fileName, lineNumber)
                     : null;
         }
 
         /// <summary>
-        /// Parses specified input string (<see cref="fullInfo"/>) into <see cref="LocationInfo"/> fields
+        /// Разбирает указанную входную строчку (<смотри cref="fullInfo"/>) в поля объекта класса <смотри cref="LocationInfo"/>.
+        /// Parses specified input string (<see cref="fullInfo"/>) into <see cref="LocationInfo"/> fields.
         /// </summary>
-        /// <param name="fullInfo"></param>
-        /// <param name="className"></param>
-        /// <param name="methodName"></param>
-        /// <param name="fileName"></param>
-        /// <param name="lineNumber"></param>
-        /// <returns></returns>
-        public static bool ParseFullInfo(string fullInfo, out string className, out string methodName, out string fileName, out int lineNumber)
+        /// <param name="fullInfo">Строчка с полной информацией о месте вызова функции, выполняющей запись в журнал логирования.</param>
+        /// <param name="className">Имя класса, в котором осуществляется вызов функции, выполняющей запись в журнал логирования.</param>
+        /// <param name="methodName">Имя метода, в котором осуществляется вызов функции, выполняющей запись в журнал логирования.</param>
+        /// <param name="fileName">Имя файла, в котором осуществляется вызов функции, выполняющей запись в журнал логирования.</param>
+        /// <param name="lineNumber">Номер линии кодового файла, в котором осуществляется вызов функции, выполняющей запись в журнал логирования.</param>
+        /// <returns>Возвращает логическое значение.</returns>
+        public static bool ParseFullInfo(
+            string fullInfo,
+            out string className,
+            out string methodName,
+            out string fileName,
+            out int lineNumber
+            )
         {
-            className = methodName = fileName = null;
+            className = null;
+            methodName = null;
+            fileName = null;
+            
+            // -1 - значение по умолчанию для линии, в которой вызывается функция записи сообщения в журнал логирования.
             lineNumber = -1;
+
             if (string.IsNullOrEmpty(fullInfo))
+            {
+                // Если входная строка пустая или равна null - то нечего синтаксически разбирать. 
                 return false;
+            }
 
+            // parts1 содержит массив подстрок, которые разделяются символом "(".
+            // Если между двумя символами "(" есть пустая строка, как в строке "((", 
+            // то такие вхождения в возвращаемый массив - удаляются.
+            // Примеры строк, содержащихся в fullInfo.
             var parts1 = fullInfo.Split(new[] { "(" }, StringSplitOptions.RemoveEmptyEntries);
+            // Если строка не разделена на две части, не формировать инстанс класса FullInfo.
             if (parts1.Length != 2)
+            {
                 return false;
+            }
 
+            // Левая (половина) часть изначальной строки fullInfo.
+            // Срезать слева и справа от левой половины входящие в неё символы открывающей круглой скобки.
+            // TODO: Довольно странно, что у левой части срезается открывающая круглая скобка.
+            // TODO: Этот код возможно, в зависимости от того, какие строки fileInfo приходят
+            // TODO: на вход потребуется пересмотреть.
             var leftPart = parts1[0].Trim('(');
+            // Правая (половина) часть изначальной строки fullInfo.
+            // Срезать слева и справа от правой половины строки fullInfo символы открывающих и закрывающих скобок.
+            // TODO: Довольно странно так же и здесь, что в одной из двух частей строки, которая 
+            // TODO: разделяется на части по открывающей скобке, происходит тримминг слева и справа
+            // TODO: символа открывающей круглой скобки. Открывающей скобки впринципе не может быть
+            // TODO: в правой части. А вот закрывающая округлая скобка в правой части исходной строки
+            // TODO: fileInfo наверняка будет. Этот код возможно, в зависимости от того, какие строки
+            // TODO: fileInfo приходят на вход потребуется пересмотреть.
             var rightPart = parts1[1].Trim('(', ')');
-            if (leftPart.Contains(".") == false || rightPart.Contains(":") == false)
-                return false;
 
+            // Если левая часть не содержит точки, а правая часть не содержит
+            // двоеточия, не формировать инстанс класса FullInfo.
+            if (leftPart.Contains(".") == false || rightPart.Contains(":") == false)
+            {
+                return false;
+            }
+
+            // Возвращает целочисленный номер последнего вхождения символа точки, начиная с нуля, в левой части.
             var lastDotIndex = leftPart.LastIndexOf(".");
+            // Данный входной параметр является внешним по отношению к текущему статическому методу.
             className = leftPart.Substring(0, lastDotIndex);
+            // Данный входной параметр является внешним по отношению к текущему статическому методу.
             methodName = leftPart.Substring(lastDotIndex + 1);
 
+            // Возвращает целочисленный номер последнего вхождения символа двоеточия, начиная с нуля, в правой части.
             var lastSemicolonIndex = rightPart.LastIndexOf(":");
+            // Данный входной параметр является внешним по отношению к текущему статическому методу.
             fileName = rightPart.Substring(0, lastSemicolonIndex);
 
-            return Int32.TryParse(rightPart.Substring(lastSemicolonIndex + 1), out lineNumber);
+            return int.TryParse(rightPart.Substring(lastSemicolonIndex + 1), out lineNumber);
         }
-        #endregion
 
+        // TODO: Как работает данным метод ещё только предстоит выяснить,
+        // TODO: когда данное переопределение будет срабатывать в конкретном типе,
+        // TODO: с конкретной строкой.
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
         /// </summary>
@@ -206,7 +267,7 @@ namespace Asteros.AsterosContact.Common.Logging
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return string.Format("[{0}: {1}]", GetType().Name, FullInfo);
+            return $"[{GetType().Name}: {FullInfo}]";
         }
     }
 }
