@@ -41,11 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logging\AdapterType.cs" />
+    <Compile Include="Logging\ILogAdapter.cs" />
     <Compile Include="Logging\ITitleForLog.cs" />
     <Compile Include="Logging\LocationInfo.cs" />
     <Compile Include="Logging\LoggingCategory.cs" />
     <Compile Include="Logging\LogLevel.cs" />
     <Compile Include="Logging\LogMessage.cs" />
+    <Compile Include="Logging\LogMessageFormatString.cs" />
     <Compile Include="Logging\LogMessageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

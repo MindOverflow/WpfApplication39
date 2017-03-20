@@ -1,5 +1,4 @@
 D:\WPF\Tests\WpfApplication39\Asteros.AsterosContact.Common\bin\Debug\Asteros.AsterosContact.Common.dll
 D:\WPF\Tests\WpfApplication39\Asteros.AsterosContact.Common\bin\Debug\Asteros.AsterosContact.Common.pdb
-D:\WPF\Tests\WpfApplication39\Asteros.AsterosContact.Common\obj\Debug\Asteros.AsterosContact.Common.csprojResolveAssemblyReference.cache
 D:\WPF\Tests\WpfApplication39\Asteros.AsterosContact.Common\obj\Debug\Asteros.AsterosContact.Common.dll
 D:\WPF\Tests\WpfApplication39\Asteros.AsterosContact.Common\obj\Debug\Asteros.AsterosContact.Common.pdb

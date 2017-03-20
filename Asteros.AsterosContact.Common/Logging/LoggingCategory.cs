@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Asteros.AsterosContact.Common.Logging
+﻿namespace Asteros.AsterosContact.Common.Logging
 {
     /// <summary>
     /// Категории записей в журнале логирования логирования.

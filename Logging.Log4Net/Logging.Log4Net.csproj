@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Log4NetAppenderAdapterBase.cs" />
     <Compile Include="Log4NetAppenderAdapterInitializationBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RollingFileAdapterInitialization.cs" />
