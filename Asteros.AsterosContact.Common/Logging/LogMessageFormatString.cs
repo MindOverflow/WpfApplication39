@@ -92,12 +92,16 @@ namespace Asteros.AsterosContact.Common.Logging
         {
             _formatString = formatString;
 
+            // Задаём регулярное выражение для поиска по заданному шаблону.
             var regex = new Regex("\\%[_0-9a-zA-Z]*\\%");
+
             var matches = regex.Matches(_formatString);
 
             for (var i = 0; i < matches.Count; i++)
             {
+                // Возвращает в matchValue значение совпадения. 
                 var matchValue = matches[i].Value;
+                // В строке форматирования меняет совпадение на строковое представление целочисленного номера.
                 _formatString = _formatString.Replace(matchValue, i.ToString());
                 var propName = matchValue.Trim('%').ToLower();
                 if (String.Compare(propName, NewLinePatternString, StringComparison.InvariantCultureIgnoreCase) == 0)
