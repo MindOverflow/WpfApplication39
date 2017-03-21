@@ -40,9 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IInitialize.cs" />
     <Compile Include="InitializationBase.cs" />
     <Compile Include="LogAdapterBase.cs" />
+    <Compile Include="LoggingInfrastructure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Asteros.AsterosContact.Common\Asteros.AsterosContact.Common.csproj">
+      <Project>{808266d5-cb09-4176-be80-59ec5486cc38}</Project>
+      <Name>Asteros.AsterosContact.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

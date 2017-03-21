@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
-namespace Common.Logging
+// Здесь ммя пространства имён не соответствует проектному пространству имён. 
+// Почему так сделано, я пока не понял. Странно, что класс
+namespace Asteros.AsterosContact.Common.Logging
 {
     /// <summary>
-	/// Provides base functionality for logging through.
-	/// </summary>
-	/// <typeparam name="TInit"></typeparam>
-	public abstract class LogAdapterBase<TInit> : ILogAdapter, IInitialize<TInit>
+    /// Provides base functionality for logging through.
+    /// </summary>
+    /// <typeparam name="TInit"></typeparam>
+    public abstract class LogAdapterBase<TInit> : ILogAdapter, IInitialize<TInit>
         where TInit : InitializationBase, new()
     {
         #region props
