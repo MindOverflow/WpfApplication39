@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace Asteros.AsterosContact.Common.Logging
 {
@@ -57,8 +58,10 @@ namespace Asteros.AsterosContact.Common.Logging
         // Так как инициализируется в конструкторе, поэтому readonly.
         private readonly string _formatString;
 
-        private readonly IList<Func<LogMessage, object>> _formatParameters = 
+        // TODO: Разобрать смысл листа _formatParameters. Пока он мне не понятен.
+        private readonly IList<Func<LogMessage, object>> _formatParameters =
             new List<Func<LogMessage, object>>();
+
         #endregion
 
         #region ctors
@@ -93,23 +96,42 @@ namespace Asteros.AsterosContact.Common.Logging
             _formatString = formatString;
 
             // Задаём регулярное выражение для поиска по заданному шаблону.
+            // TODO: Разобрать регулярное выражение. Не понятно.
             var regex = new Regex("\\%[_0-9a-zA-Z]*\\%");
 
+            // Возвращает коллекцию MatchCollection в которой храняться все совпадения. 
             var matches = regex.Matches(_formatString);
 
+            // Перебрать коллекцию всех совпадений.
             for (var i = 0; i < matches.Count; i++)
             {
-                // Возвращает в matchValue значение совпадения. 
+                // Возвращает в matchValue значение i-ого совпадения. 
                 var matchValue = matches[i].Value;
                 // В строке форматирования меняет совпадение на строковое представление целочисленного номера.
                 _formatString = _formatString.Replace(matchValue, i.ToString());
+                // Взять совпадение регулярного выражения, срезать у него слева
+                // и справа символ '%' и все символы обрезанной сторки перевести
+                // в нижний регистр.
                 var propName = matchValue.Trim('%').ToLower();
-                if (String.Compare(propName, NewLinePatternString, StringComparison.InvariantCultureIgnoreCase) == 0)
+
+                // Если строки раавны, игнорируя регистр:
+                if (string.Compare(propName, NewLinePatternString, StringComparison.InvariantCultureIgnoreCase) == 0)
+                {
+                    // TODO: Не понятно применение класса Environment и его свойства NewLine.
+                    // TODO: За данным вопросом идти сюда:
+                    // TODO: https://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k(System.Environment);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.5);k(DevLang-csharp)&rd=true
                     _formatParameters.Add(message => Environment.NewLine);
+                }
+                // Если в словаре NamedValues нет ключа propName:
                 else if (NamedValues.ContainsKey(propName) == false)
+                {
                     _formatParameters.Add(message => "unknown property " + propName);
+                }
+                // Если в словаре NamedValues есть ключ propName, добавить его значение в лист _formatParameters
                 else
+                {
                     _formatParameters.Add(NamedValues[propName]);
+                }
             }
         }
         #endregion
@@ -123,22 +145,25 @@ namespace Asteros.AsterosContact.Common.Logging
         }
 
         /// <summary>
-        /// Formats <see cref="logMessage"/> to string
+        /// Форматирует инстанс <сморти cref="LogMessage"/> в строчку
+        /// Formats <see cref="LogMessage"/> to string
         /// </summary>
         /// <param name="logMessage"></param>
         /// <returns></returns>
         public string FormatLogMessage(LogMessage logMessage)
         {
+            // Если предоставленный параметр равен null.
             if (logMessage == null)
             {
-                System.Diagnostics.Debug.WriteLine(
-                    "logMessage is null",
-                    String.Format("{0}.{1}", GetType().Name, "FormatLogMessage")
-                    );
+                Debug.WriteLine("logMessage параметр равен null", $"{GetType().Name}.FormatLogMessage");
                 return null;
             }
 
-            return String.Format(_formatString, _formatParameters.Select(func => func(logMessage)).ToArray());
+            // А если всё-таки предоставленный параметр не пустой.
+            // Здесь происходит подстановка в форматирующую строчку, _formatString
+            // элементов массива, который вычисляется из коллекции _formatParameters.
+            // TODO: Не понятно, как срабатывает лямбда-выражение.
+            return string.Format(_formatString, _formatParameters.Select(func => func(logMessage)).ToArray());
         }
     }
 }
